@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ktemplate/pages/bloc/counter_cubit.dart';
-import 'package:ktemplate/pages/bloc/counter_state.dart';
+import 'package:ktemplate/presentation/pages/bloc/counter_cubit.dart';
+import 'package:ktemplate/presentation/pages/bloc/counter_state.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();

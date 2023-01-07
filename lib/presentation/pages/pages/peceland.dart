@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:ktemplate/pages/pages/category.dart';
-import 'package:ktemplate/pages/pages/swip.dart';
+import 'package:ktemplate/presentation/pages/pages/category.dart';
+import 'package:ktemplate/presentation/pages/pages/swip.dart';
 
 import 'ListBox.dart';
 
