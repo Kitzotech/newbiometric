@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:ktemplate/presentation/pages/bloc/counter_cubit.dart';
+import 'package:ktemplate/presentation/bloc/counter_cubit.dart';
 
 class CounterState extends Equatable {
   int count;

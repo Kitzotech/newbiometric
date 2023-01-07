@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ktemplate/presentation/pages/bloc/counter_cubit.dart';
-import 'package:ktemplate/presentation/pages/bloc/counter_state.dart';
+import 'package:ktemplate/presentation/bloc/counter_cubit.dart';
+import 'package:ktemplate/presentation/bloc/counter_state.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
 
-  runApp(BlocProvider<CounterCubit>(
-      create: (_) => CounterCubit(), child: MaterialApp(home: Counter())));
+  runApp(MultiRepositoryProvider(
+      providers: [],
+      child: MultiBlocProvider(providers: [
+        BlocProvider<CounterCubit>(create: (_) => CounterCubit()),
+        BlocProvider<CounterCubit>(create: (_) => CounterCubit()),
+      ], child: MaterialApp(home: Counter()))));
 }
 
 class AppBlocObserver extends BlocObserver {
@@ -70,7 +74,7 @@ class _CounterState extends State<Counter> {
                   child: const Icon(Icons.add),
                 ),
                 body: Center(
-                  child: Text("Template"),
+                  child: Text(state.count.toString()),
                 )));
       },
     );
