@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ktemplate/presentation/bloc/counter_cubit.dart';
-import 'package:ktemplate/presentation/bloc/counter_state.dart';
+import 'package:ktemplate/data/repositories/auth_repository.dart';
+import 'package:ktemplate/presentation/bloc/login_cubit.dart';
+import 'package:ktemplate/presentation/bloc/login_state.dart';
+import 'package:ktemplate/presentation/pages/pages/app.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
@@ -9,9 +11,8 @@ void main() {
   runApp(MultiRepositoryProvider(
       providers: [],
       child: MultiBlocProvider(providers: [
-        BlocProvider<CounterCubit>(create: (_) => CounterCubit()),
-        BlocProvider<CounterCubit>(create: (_) => CounterCubit()),
-      ], child: MaterialApp(home: Counter()))));
+        BlocProvider<LoginCubit>(create: (_) => LoginCubit(auth_repository: AuthRepository())),
+      ], child: MaterialApp(home: App()))));
 }
 
 class AppBlocObserver extends BlocObserver {
@@ -38,45 +39,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Counter();
+    return App();
   }
 }
 
-class Counter extends StatefulWidget {
-  @override
-  _CounterState createState() => _CounterState();
-}
 
-class _CounterState extends State<Counter> {
-  int _counter = 0;
-
-  void _increment() {
-    // _counter++;
-
-    context.read<CounterCubit>().addcount();
-  }
-
-  void _decrement() {
-    // if (_counter > 0) {
-    //  _counter--;
-    context.read<CounterCubit>().decrement();
-    // }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CounterCubit, CounterState>(
-      builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () {},
-                  child: const Icon(Icons.add),
-                ),
-                body: Center(
-                  child: Text(state.count.toString()),
-                )));
-      },
-    );
-  }
-}

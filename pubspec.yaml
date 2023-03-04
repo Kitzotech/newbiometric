@@ -42,6 +42,7 @@ dependencies:
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   google_sign_in_web: ^0.10.2
+  http: ^0.13.5
 
 
 
